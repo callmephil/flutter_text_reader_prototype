@@ -4,9 +4,8 @@ This repository contains a Flutter widget that highlights text word by word, scr
 
 ## Demo
 
-Watch the demo video to see the text reader in action:
+[![Video](https://github.com/callmephil/flutter_text_reader_prototype/blob/master/demo/text_reader_highlight_demo.jpg)](https://github.com/callmephil/flutter_text_reader_prototype/blob/master/demo/text_reader_highlight_demo.mp4)
 
-[![Video](https://raw.githubusercontent.com/callmephil/flutter_text_reader_prototype/demo/text_reader_highlight_demo.jpg)](https://raw.githubusercontent.com/callmephil/flutter_text_reader_prototype/demo/text_reader_highlight_demo.mp4)
 
 ## Motivation
 
