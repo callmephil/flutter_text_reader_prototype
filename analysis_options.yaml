@@ -7,22 +7,62 @@
 
 # The following line activates a set of recommended lints for Flutter apps,
 # packages, and plugins designed to encourage good coding practices.
-include: package:flutter_lints/flutter.yaml
+include: package:very_good_analysis/analysis_options.yaml
+
+analyzer:
+  exclude:
+    - build/**
+    - "**/*.g.dart"
+    - "**/*.freezed.dart"
+    - "**/*.graphql.dart"
+    - "**/*.pb.dart"
+    - "**/*.pbenum.dart"
+    - "**/*.pbjson.dart"
+    - "**/*.pbgrpc.dart"
+    - test/.test_coverage.dart
+    - lib/generated_plugin_registrant.dart
+    - lib/firebase_options.dart
+
+  language:
+    strict-casts: true
+    strict-inference: true
+    strict-raw-types: true
+
+  errors:
+    #recommend to ignore by freezed package author:
+    #https://github.com/rrousselGit/freezed/issues/488#issuecomment-894358980
+    invalid_annotation_target: ignore
+    missing_required_param: error
+    missing_return: error
+    use_setters_to_change_properties: ignore
+
+  plugins:
 
 linter:
-  # The lint rules applied to this project can be customized in the
-  # section below to disable rules from the `package:flutter_lints/flutter.yaml`
-  # included above or to enable additional rules. A list of all available lints
-  # and their documentation is published at https://dart.dev/lints.
-  #
-  # Instead of disabling a lint rule for the entire project in the
-  # section below, it can also be suppressed for a single line of code
-  # or a specific dart file by using the `// ignore: name_of_lint` and
-  # `// ignore_for_file: name_of_lint` syntax on the line or in the file
-  # producing the lint.
   rules:
-    # avoid_print: false  # Uncomment to disable the `avoid_print` rule
-    # prefer_single_quotes: true  # Uncomment to enable the `prefer_single_quotes` rule
+    public_member_api_docs: false
+    sort_pub_dependencies: false
+    avoid_positional_boolean_parameters: false
+    flutter_style_todos: false
+    always_put_required_named_parameters_first: false
+    avoid_returning_this: false
+    lines_longer_than_80_chars: false
 
-# Additional information about this file can be found at
-# https://dart.dev/guides/language/analysis-options
+# Learn more: https://dcm.dev/docs/individuals/configuration
+dart_code_metrics:
+  extends:
+    - recommended
+  metrics:
+    cyclomatic-complexity: 20
+    number-of-parameters: 4
+    maximum-nesting-level: 5
+  metrics-exclude:
+    - test/**
+    - build/**
+    - "**/*.g.dart"
+    - "**/*.freezed.dart"
+    - "**/*.graphql.dart"
+    - lib/generated_plugin_registrant.dart
+    - lib/firebase/firebase_options.dart
+
+  rules:

@@ -1,30 +1,42 @@
-// This is a basic Flutter widget test.
-//
-// To perform an interaction with a widget in your test, use the WidgetTester
-// utility in the flutter_test package. For example, you can send tap and scroll
-// gestures. You can also use WidgetTester to find child widgets in the widget
-// tree, read text, and verify that the values of widget properties are correct.
-
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-
 import 'package:flutter_text_reader_prototype/main.dart';
 
 void main() {
-  testWidgets('Counter increments smoke test', (WidgetTester tester) async {
-    // Build our app and trigger a frame.
-    await tester.pumpWidget(const MyApp());
+  testWidgets(
+    'TextReaderPrototype builds and responds to taps',
+    (WidgetTester tester) async {
+      const testText = 'Hello world this is a test of the text reader';
 
-    // Verify that our counter starts at 0.
-    expect(find.text('0'), findsOneWidget);
-    expect(find.text('1'), findsNothing);
+      await tester.pumpWidget(
+        const MaterialApp(
+          home: Scaffold(body: TextReaderPrototype(text: testText)),
+        ),
+      );
 
-    // Tap the '+' icon and trigger a frame.
-    await tester.tap(find.byIcon(Icons.add));
-    await tester.pump();
+      expect(find.textContaining('Hello'), findsOneWidget);
+      expect(find.textContaining('world'), findsOneWidget);
 
-    // Verify that our counter has incremented.
-    expect(find.text('0'), findsNothing);
-    expect(find.text('1'), findsOneWidget);
-  });
+      expect(find.byIcon(Icons.play_arrow), findsOneWidget);
+      expect(find.byIcon(Icons.pause), findsNothing);
+
+      await tester.tap(find.byIcon(Icons.play_arrow));
+      await tester.pump();
+
+      expect(find.byIcon(Icons.play_arrow), findsNothing);
+      expect(find.byIcon(Icons.pause), findsOneWidget);
+
+      // TODO: figure out how to tap on the TextSpan
+
+      await tester.tap(find.byIcon(Icons.pause));
+      await tester.pump();
+
+      // reason: we expect the play button to be visible again
+      // ignore: avoid-duplicate-test-assertions
+      expect(find.byIcon(Icons.play_arrow), findsOneWidget);
+      // reason: we expect the pause button to be hidden
+      // ignore: avoid-duplicate-test-assertions
+      expect(find.byIcon(Icons.pause), findsNothing);
+    },
+  );
 }
