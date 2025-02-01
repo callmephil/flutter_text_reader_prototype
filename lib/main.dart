@@ -143,7 +143,7 @@ class _TextReaderWithTTSState extends State<TextReaderWithTTS> {
       _isPlaying = true;
       _isProcessingWord = false;
     });
-    _processNextWord();
+    await _processNextWord();
   }
 
   Future<void> _pause() async {
@@ -170,7 +170,7 @@ class _TextReaderWithTTSState extends State<TextReaderWithTTS> {
       _isPlaying = true;
       _isProcessingWord = false;
     });
-    _processNextWord();
+    await _processNextWord();
     _scrollToNextSentenceIfNeeded();
   }
 
