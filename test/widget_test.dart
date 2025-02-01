@@ -4,13 +4,13 @@ import 'package:flutter_text_reader_prototype/main.dart';
 
 void main() {
   testWidgets(
-    'TextReaderPrototype builds and responds to taps',
+    'TextReaderWithTTS builds and responds to taps',
     (WidgetTester tester) async {
       const testText = 'Hello world this is a test of the text reader';
 
       await tester.pumpWidget(
         const MaterialApp(
-          home: Scaffold(body: TextReaderPrototype(text: testText)),
+          home: Scaffold(body: TextReaderWithTTS(text: testText)),
         ),
       );
 
